@@ -199,16 +199,18 @@
                              <div>
                                 <img src="{% static '/img/small-logos/logo-asana.svg' %}" class="avatar avatar-sm me-3" alt="xd">
                              </div>
+
                              <div class="d-flex flex-column justify-content-center">
-                                <a href="#" type="button" class="btn btn-outline-primary btn-sm mb-0">{{ i.name }}</a>
+                                <a href="#" type="button" class="btn btn-primary">{{i.course_name}}</a>
                              </div>
+
                           </div>
                        </td>
                        <td class="align-middle text-sm">
-                          <span class="text-xs font-weight-bold">{{ i.fees }}</span>
+                          <span class="text-xs font-weight-bold">{{i.fees}}</span>
                        </td>
                        <td class="align-middle text-center text-sm">
-                          <span class="text-xs font-weight-bold">{{ i.duration }}</span>
+                          <span class="text-xs font-weight-bold">{{i.duration}}</span>
                        </td>
                        <td class="text-center text-sm">
                           <span class="text-xs font-weight-bold">november</span>

@@ -8,5 +8,4 @@ urlpatterns = [
     path('sign-in/', sign_in,),
     path('course/', course),
     path('addcourse/', add_courses),
-    # path('coursedata/',data),
 ]

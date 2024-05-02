@@ -54,8 +54,6 @@ def course(request):
 
 
 def add_courses(request):
-    obj = Course.objects.all()
-
     if request.method == "POST":
         course_name = request.POST['couses']
         fees = request.POST['fees']
@@ -67,9 +65,9 @@ def add_courses(request):
                                   duration=duration)
             return redirect("/course/")
         
-    else:
-        obj=student_course.objects.all()
-        return render(request,'courses.html',{"data":obj})
+def course(request):
+    db = Course.objects.all()
+    return render(request, "courses.html", {'data':db})
 
 
 
