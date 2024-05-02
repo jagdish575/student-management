@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 
 <head>
+  {% load static %}
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
@@ -14,14 +14,14 @@
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
-  <link href={"/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="{% static "css/nucleo-icons.css" %}"rel="stylesheet" />
+  <link href="{% static "css/nucleo-svg.css" %}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="{% static 'css/material-dashboard.css' %}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -192,53 +192,32 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for i in data %}
                     <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="/img/small-logos/logo-asana.svg" class="avatar avatar-sm me-3" alt="xd">
+                       <td>
+                          <div class="d-flex px-2 py-1">
+                             <div>
+                                <img src="{% static '/img/small-logos/logo-asana.svg' %}" class="avatar avatar-sm me-3" alt="xd">
+                             </div>
+                             <div class="d-flex flex-column justify-content-center">
+                                <a href="#" type="button" class="btn btn-outline-primary btn-sm mb-0">{{ i.name }}</a>
+                             </div>
                           </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <a href="Courses_details.html" type="button"
-                              class="btn btn-outline-primary btn-sm mb-0">Python</a>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <span class="text-xs font-weight-bold">35k</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold">It is 3 months course</span>
-                      </td>
-                      <td class="text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 12 NOV 7:20 PM </span>
-                      </td>
+                       </td>
+                       <td class="align-middle text-sm">
+                          <span class="text-xs font-weight-bold">{{ i.fees }}</span>
+                       </td>
+                       <td class="align-middle text-center text-sm">
+                          <span class="text-xs font-weight-bold">{{ i.duration }}</span>
+                       </td>
+                       <td class="text-center text-sm">
+                          <span class="text-xs font-weight-bold">november</span>
+                       </td>
                     </tr>
-
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="/img/small-logos/logo-asana.svg" class="avatar avatar-sm me-3" alt="xd">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <a href="Courses_details.html" type="button"
-                              class="btn btn-outline-primary btn-sm mb-0">React</a>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <span class="text-xs font-weight-bold">35k</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold">It is 6 months course</span>
-                      </td>
-                      <td class="text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 12 NOV 7:20 PM </span>
-                      </td>
-                    </tr>
-
-                  </tbody>
+                    {% endfor %}  
+                 </tbody>
+                 
+                 
                 </table>
               </div>
             </div>
@@ -259,35 +238,35 @@
             </div>
             <div class="modal-body">
               <div class="card-body">
-                <form role="form">
+                <form  action ="/addcourse/" method="post" role="form">
+                  {% csrf_token %}
                   <div class="row">
                     <div class="col-lg-6 col-md-6">
                       <div class="input-group input-group-outline mb-3">
                         <label class="form-label">Course</label>
-                        <input type="text" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                        <input type="text" name='couses' class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="col-lg-6 col-md-6">
+                        <div class="input-group input-group-outline mb-3">
+                          <label class="form-label">Fees</label>
+                          <input type="text"  name='fees'class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
                       </div>
                     </div>
 
                     <div class="col-lg-6 col-md-6">
                       <div class="input-group input-group-outline mb-3">
-                        <select class="form-select form-control" onfocus="focused(this)" onfocusout="defocused(this)"
-                          aria-label="Default select example">
-                          <option selected>Fees</option>
-                          <option value="13k">13k</option>
-                          <option value="15k">15k</option>
-                          <option value=30k">30k</option>
-                        </select>
+                        <label class="form-label">Duration</label>
+                        <input type="text" name='duration'class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
                       </div>
-                    </div>
-
-                    <div class="input-group input-group-outline mb-3">
-                      <textarea class="form-control col-lg-12 col-md-6" placeholder="Leave a comment here"
-                        id="floatingTextarea"></textarea>
                     </div>
 
 
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-2 mb-0"
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-2 mb-0"
                         data-bs-dismiss="modal">Submit</button>
                     </div>
                   </div>
@@ -389,11 +368,11 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="/js/core/popper.min.js"></script>
-  <script src="/js/core/bootstrap.min.js"></script>
-  <script src="/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="/js/plugins/chartjs.min.js"></script>
+  <script src="{% static "js/core/popper.min.js" %}"></script>
+  <script src="{% static "js/core/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/plugins/perfect-scrollbar.min.js" %}"></script>
+  <script src="{% static "js/plugins/smooth-scrollbar.min.js" %}"></script>
+  <script src="{% static "js/plugins/chartjs.min.js" %}"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -651,9 +630,9 @@
     }
   </script>
   <!-- Github buttons -->
-  <script async defer src={% static "https://buttons.github.io/buttons.js" %}></script>
+  <script async defer src= "https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src={% static"/js/material-dashboard.min.js?v=3.0.0" %}></script>
+  <script src="{% static "js/material-dashboard.min.js" %}"></script>
 </body>
 
 </html>

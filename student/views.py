@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
-from .models import User
+from .models import *
 from django.http import HttpResponse 
 
 
@@ -48,3 +48,31 @@ def sign_up(request):
 
 def Profile(request):
     return render(request, 'profile.html')
+
+def course(request):
+    return render(request,'courses.html')
+
+
+def add_courses(request):
+    obj = Course.objects.all()
+
+    if request.method == "POST":
+        course_name = request.POST['couses']
+        fees = request.POST['fees']
+        duration=request.POST['duration']
+        if Course.objects.filter(course_name=course_name).exists():
+            return HttpResponse("Course Already Exists")
+        else:
+            Course.objects.create(course_name=course_name, fees=fees,
+                                  duration=duration)
+            return redirect("/course/")
+        
+    else:
+        obj=student_course.objects.all()
+        return render(request,'courses.html',{"data":obj})
+
+
+
+
+
+

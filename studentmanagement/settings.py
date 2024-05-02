@@ -84,16 +84,16 @@ DATABASES = {
 
 
 
-# DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'student',
-        # 'USER': 'root',
-        # 'PASSWORD': '',
-        # 'HOST': 'localhost',
-        # 'PORT': '3306',      
-    # }
-# }
+# #  DATABASES = {
+#     #  'default': {
+#         #  'ENGINE': 'django.db.backends.mysql',
+#          'NAME': 'student',
+#          'USER': 'root',
+#          'PASSWORD': '',
+#          'HOST': 'localhost',
+#          'PORT': '3306',      
+#      }
+# # }
 
 
 
@@ -145,3 +145,5 @@ import os
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 STATICFILES_DIRS = [STATIC_DIR ]
+
+
