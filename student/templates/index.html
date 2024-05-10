@@ -58,13 +58,13 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action ="/sign-in/" method="post">
+                <form action ="/signin/" method="post">
                     {% csrf_token %}
             
-                    <div class="input-group input-group-outline my-3">
+                    {% comment %} <div class="input-group input-group-outline my-3">
                         <label class="form-label"></label>
                         <input id="username" type="text" class="form-control" name="username" placeholder="Username">
-                    </div>
+                    </div> {% endcomment %}
                     <div class="input-group input-group-outline my-3">
                         <label class="form-label"></label>
                         <input id="email" type="email" class="form-control" name="email" placeholder="Email">

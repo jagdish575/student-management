@@ -97,14 +97,14 @@
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">assignment</i>
             </div>
-            <span class="nav-link-text ms-1">Sign Up</span>
+            <span class="nav-link-text ms-1"    href="/signup/" type="button">Sign Up</span>
           </a>
         </li>
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
-        <a class="btn bg-gradient-primary mt-4 w-100" href="" type="button">Logout</a>
+        <a class="btn bg-gradient-primary mt-4 w-100" href="/" type="button">Logout</a>
       </div>
     </div>
   </aside>
@@ -186,9 +186,13 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Fees
                       </th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Comment</th>
+                        date</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Registered Date</th>
+                        Registration date</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                          Update</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                          Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -212,11 +216,19 @@
                        <td class="align-middle text-center text-sm">
                           <span class="text-xs font-weight-bold">{{i.duration}}</span>
                        </td>
-                       <td class="text-center text-sm">
-                          <span class="text-xs font-weight-bold">november</span>
+                       <td >novemver
                        </td>
-                    </tr>
-                    {% endfor %}  
+                       <td class="align-middle text-center tect-sm">
+                        <a <span class="text-xs font-weight-bold btn btn-primary" class="btn btn-primary" href="{% url 'update_course' i.id %}">update</span></a>
+                       </td>
+                       <td class="align-middle text-center tect-sm">
+                        <td></td>
+                        <td>
+            <a <span class="text-xs font-weight-bold btn btn-primary" class="btn btn-primary" href="{% url 'delete_course' i.id %}">Delete</span></a>
+    </td>
+</tr>
+{% endfor %}
+
                  </tbody>
                  
                  
@@ -240,7 +252,7 @@
             </div>
             <div class="modal-body">
               <div class="card-body">
-                <form  action ="/addcourse/" method="post" role="form">
+                <form  action ="/addcourse/" method="post" enctype="multipart/form-data" role="form">
                   {% csrf_token %}
                   <div class="row">
                     <div class="col-lg-6 col-md-6">
