@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.hashers import make_password, check_password
 from .models import *
 from django.http import HttpResponse 
+from django.contrib import messages
 
 
 
@@ -18,9 +19,11 @@ def sign_in(request):
             if check_password(user_password,password):
                 return redirect('/profile/')
             else:
-                return HttpResponse("Password incorrected ")
+                messages.error( request, "Password incorrected ")
+                return redirect('/')
         else:
-            return HttpResponse("Email not registered")
+             messages.error( request , "Email not registered")
+             return redirect('/')
     
 
 def sign_up(request):
@@ -59,8 +62,12 @@ def course_update(request,):
         return redirect('/course/')
 
    
-def Profile(request):
-    return render(request, 'profile.html')
+def Profile(request, pk):
+    student_obj=Student.objects.get(id=pk)
+    return render(request, 'profile.html', { 'student_obj':student_obj } )
+
+
+
 
 def course(request):
     return render(request,'courses.html')
@@ -107,6 +114,10 @@ def add_student(request):
         
 
 
+
+
+def dashboard(request):
+    return render (request ,'dashboard.html')
 
 
 
