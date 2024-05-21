@@ -110,7 +110,7 @@
                   <p class="mb-0">Enter your email and password to register</p>
                 </div>
                 <div class="card-body">
-                  <form  action="/registration/" method="post" role="form">
+                  <form id="registrationForm" method="post" action="{% url 'registration' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                      <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Username</label>

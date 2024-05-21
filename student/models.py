@@ -7,12 +7,20 @@ class User(models.Model):
     email=models.EmailField(unique=True)
     password=models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
+    
+
 
 
 class Course(models.Model):
     course_name= models.CharField(max_length=100)
     fees= models.IntegerField()
     duration= models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.course_name
     
 
 class Student (models.Model):
@@ -24,6 +32,9 @@ class Student (models.Model):
     course=models.ForeignKey( Course,on_delete=models.CASCADE)
     address=models.TextField()
     image=models.FileField(upload_to='student/',max_length=100)
+
+    def __str__(self):
+        return self.name
     
 
 

@@ -45,7 +45,7 @@ def create_user(request):
 def delete_course(request, pk):
          dt = Course.objects.get(id=pk)
          dt.delete()
-         return redirect('/course/')
+         return redirect('/courses/')
 
 def update_course( request,uid):
     course = Course.objects.get( id = uid )
@@ -62,7 +62,7 @@ def course_update(request,):
         return redirect('/course/')
 
    
-def Profile(request, pk):
+def profile(request,pk):
     student_obj=Student.objects.get(id=pk)
     return render(request, 'profile.html', { 'student_obj':student_obj } )
 
