@@ -1,0 +1,21 @@
+plaintext
+Copy code
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+# Database files
+db.sqlite3
+
+# IDE and editor configuration
+.vscode/
+.idea/
+
+# Temporary files
+*~
+*.bak
+*.tmp
+*.swp
